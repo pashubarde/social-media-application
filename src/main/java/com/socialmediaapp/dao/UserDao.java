@@ -14,6 +14,8 @@ public class UserDao {
 
 	private static List<User> users = new ArrayList<User>();
 
+	private static int userCount = 4;
+
 	static {
 		users.add(new User(1, "Prashant", LocalDate.now().minusYears(30)));
 		users.add(new User(2, "Ashok", LocalDate.now().minusYears(60)));
@@ -27,5 +29,11 @@ public class UserDao {
 
 	public User findUsers(int id) {
 		return users.stream().filter(i -> i.getId().equals(id)).findFirst().get();
+	}
+
+	public User save(User user) {
+		user.setId(++userCount);
+		users.add(user);
+		return user;
 	}
 }
