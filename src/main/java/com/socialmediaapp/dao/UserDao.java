@@ -28,7 +28,10 @@ public class UserDao {
 	}
 
 	public User findUsers(int id) {
-		return users.stream().filter(i -> i.getId().equals(id)).findFirst().get();
+		return users.stream().filter(i -> i.getId().equals(id)).findFirst().orElse(null);
+	}
+	public void deleteById(int id) {
+		users.removeIf(i -> i.getId().equals(id));
 	}
 
 	public User save(User user) {
